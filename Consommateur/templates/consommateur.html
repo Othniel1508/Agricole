@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire Consommateur</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #a1a0a0, #ffffff);
+      color: #333333;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      background-color: #f9f9f9;
+      border: none;
+      border-radius: 5px;
+      color: #333333;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-publish {
+      background-color: #333333;
+      color: #ffffff;
+      border-radius: 5px;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">Formulaire Consommateur</h2>
+    <form method="post">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="consommateur_id">Consommateur_id:</label>
+        <input type="text" class="form-control" id="consommateur_id" name="consommateur_id" value="12345" readonly>
+      </div>
+     <div class="form-group">
+  <label for="preferences_alimentaires">Préférences alimentaires :</label>
+    </div>
+    <div class="form-group">
+  <label for="bio">Bio:</label>
+  <select class="form-control" id="bio" name="bio" required>
+    <option value="true">Oui</option>
+    <option value="false">Non</option>
+  </select>
+  <label for="local">Local :</label>
+  <select class="form-control" id="local" name="local" required>
+    <option value="true">Oui</option>
+    <option value="false">Non</option>
+  </select>
+  <label for="sans_gluten">Sans gluten :</label>
+  <select class="form-control" id="sans_gluten" name="sans_gluten" required>
+    <option value="true">Oui</option>
+    <option value="false">Non</option>
+  </select>
+  <label for="vegetarien">Végétarien :</label>
+  <select class="form-control" id="vegetarien" name="vegetarien" required>
+    <option value="true">Oui</option>
+    <option value="false">Non</option>
+  </select>
+  <label for="vegetalien">Végétalien :</label>
+  <select class="form-control" id="vegetalien" name="vegetalien" required>
+    <option value="true">Oui</option>
+    <option value="false">Non</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="retours_produits">Retour sur les produits :</label>
+
+  <div id="retours_produits">
+    <!-- Premier produit -->
+    <div class="produit">
+      <label for="produit1">Produit :</label>
+      <select class="form-control" id="produit1" name="produit1" readonly>
+        <option value="Pommes biologiques">Pommes biologiques</option>
+        <option value="Pain sans gluten">Pain sans gluten</option>
+        <option value="Yaourt nature">Yaourt nature</option>
+        <option value="Fromage cheddar">Fromage cheddar</option>
+        <option value="Jus d'orange">Jus d'orange</option>
+      </select>
+      <label for="avis1">Avis :</label>
+      <textarea class="form-control" id="avis1" name="avis1" rows="3" >Très satisfait de la qualité et du goût. Les pommes étaient fraîches et juteuses.</textarea>
+
+      <label for="evaluation1">Évaluation :</label>
+      <select class="form-control" id="evaluation1" name="evaluation1" >
+        <option value="5">5 (Très satisfait)</option>
+        <option value="4">4 (Satisfait)</option>
+        <option value="3">3 (Neutre)</option>
+        <option value="2">2 (Insatisfait)</option>
+        <option value="1">1 (Très insatisfait)</option>
+      </select>
+
+      <label for="date_evaluation1">Date d'évaluation :</label>
+      <input type="date" class="form-control" id="date_evaluation1" name="date_evaluation1">
+    </div>
+
+    <!-- Deuxième produit -->
+    <div class="produit">
+      <label for="produit2">Produit :</label>
+      <select class="form-control" id="produit1" name="produit1" readonly>
+        <option value="Pommes biologiques">Pommes biologiques</option>
+        <option value="Pain sans gluten">Pain sans gluten</option>
+        <option value="Yaourt nature">Yaourt nature</option>
+        <option value="Fromage cheddar">Fromage cheddar</option>
+        <option value="Jus d'orange">Jus d'orange</option>
+      </select>
+      <label for="avis2">Avis :</label>
+      <textarea class="form-control" id="avis2" name="avis2" rows="3" >Bonne texture, mais le goût est un peu fade.</textarea>
+
+      <label for="evaluation2">Évaluation :</label>
+      <select class="form-control" id="evaluation2" name="evaluation2" >
+        <option value="5">5 (Très satisfait)</option>
+        <option value="4">4 (Satisfait)</option>
+        <option value="3">3 (Neutre)</option>
+        <option value="2">2 (Insatisfait)</option>
+        <option value="1">1 (Très insatisfait)</option>
+      </select>
+
+      <label for="date_evaluation2">Date d'évaluation :</label>
+      <input type="date" class="form-control" id="date_evaluation2" name="date_evaluation2">
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="demandes_specifiques">Demande de produits spécifiques :</label>
+
+  <div id="demandes_specifiques">
+    <!-- Première demande spécifique -->
+    <div class="demande_specifique">
+      <label for="produit_demande1">Produit demandé :</label>
+      <select class="form-control" id="produit_demande1" name="produit_demande1" >
+        <option value="Légumes biologiques locaux">Légumes biologiques locaux</option>
+        <option value="Fromage végétalien">Fromage végétalien</option>
+        <!-- Ajoutez d'autres options ici si nécessaire -->
+      </select>
+
+      <label for="motif_demande1">Motif de la demande :</label>
+      <textarea class="form-control" id="motif_demande1" name="motif_demande1" rows="3" >Je soutiens l'agriculture locale et je suis intéressé par des légumes cultivés de manière biologique dans ma région.</textarea>
+    </div>
+
+    <!-- Deuxième demande spécifique -->
+    <div class="demande_specifique">
+      <label for="produit_demande2">Produit demandé :</label>
+      <select class="form-control" id="produit_demande2" name="produit_demande2" >
+        <option value="Légumes biologiques locaux">Légumes biologiques locaux</option>
+        <option value="Fromage végétalien">Fromage végétalien</option>
+        <!-- Ajoutez d'autres options ici si nécessaire -->
+      </select>
+
+      <label for="motif_demande2">Motif de la demande :</label>
+      <textarea class="form-control" id="motif_demande2" name="motif_demande2" rows="3" >En tant que végétalien, je suis à la recherche de fromages sans produits laitiers, et je serais ravi de trouver des options végétaliennes locales.</textarea>
+    </div>
+  </div>
+</div>
+      <button type="submit" class="btn btn-publish">Publier Consommateur</button>
+    </form>
+  </div>
+</body>
+</html>

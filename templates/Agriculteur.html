@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr
+">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire Agriculteur</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #a1a0a0, #ffffff);
+      color: #333333;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      background-color: #f9f9f9;
+      border: none;
+      border-radius: 5px;
+      color: #333333;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-publish {
+      background-color: #333333;
+      color: #ffffff;
+      border-radius: 5px;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">Formulaire Agriculteur</h2>
+    <form method="post">
+        {% csrf_token %}
+      <div class="form-group">
+        <label for="capteurs">Données de capteurs agricoles :</label>
+        <textarea class="form-control" id="capteurs" name="capteurs" rows="3" required>{{ json_data }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="informations">Informations sur les cultures :</label>
+        <div id="informations">
+          <div class="form-group">
+            <label for="parcelle_id">Parcelle ID :</label>
+            <select class="form-control" id="parcelle_id" name="informations[parcelle_id]" required>
+              <option value="">Sélectionner une option</option>
+              <option value="PAR001">PAR001</option>
+              <option value="PAR002">PAR002</option>
+              <option value="PAR003">PAR003</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="culture">Culture :</label>
+            <select class="form-control" id="culture" name="informations[culture]" required>
+              <option value="">Sélectionner une option</option>
+              <option value="Blé">Blé</option>
+              <option value="Maïs">Maïs</option>
+              <option value="Orge">Orge</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="variete">Variété :</label>
+            <select class="form-control" id="variete" name="informations[variete]" required>
+              <option value="">Sélectionner une option</option>
+              <option value="Blé tendre">Blé tendre</option>
+              <option value="Maïs doux">Maïs doux</option>
+              <option value="Orge d'hiver">Orge d'hiver</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date_plantation">Date de plantation :</label>
+            <input type="date" class="form-control" id="date_plantation" name="informations[date_plantation]" required>
+          </div>
+          <div class="form-group">
+            <label for="techniques_culturales">Techniques culturales :</label>
+            <div id="techniques_culturales">
+              <div class="form-group">
+                <label for="type">Type :</label>
+                <select class="form-control" id="type" name="informations[techniques_culturales][type]" required>
+                  <option value="">Sélectionner une option</option>
+                  <option value="Agriculture raisonnée">Agriculture raisonnée</option>
+                  <option value="Agriculture biologique">Agriculture biologique</option>
+                  <option value="Agriculture conventionnelle">Agriculture conventionnelle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fertilisation">Fertilisation :</label>
+                <select class="form-control" id="fertilisation" name="informations[techniques_culturales][fertilisation]" required>
+                  <option value="">Sélectionner une option</option>
+                  <option value="Engrais organique">Engrais organique</option>
+                  <option value="Engrais chimique">Engrais chimique</option>
+                  <option value="Pas de fertilisation">Pas de fertilisation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="irrigation">Irrigation :</label>
+                <select class="form-control" id="irrigation" name="informations[techniques_culturales][irrigation]" required>
+                  <option value="">Sélectionner une option</option>
+                  <option value="Goutte-à-goutte">Goutte-à-goutte</option>
+                  <option value="Arrosage par aspersion">Arrosage par aspersion</option>
+                  <option value="Irrigation par gravité">Irrigation par gravité</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <label for="traitements_phytosanitaires">Traitements phytosanitaires :</label>
+          <select class="form-control" id="traitements_phytosanitaires" name="traitements_phytosanitaires[]" multiple required>
+          <option value="Fongicide A">Fongicide A</option>
+          <option value="Fongicide B">Fongicide B</option>
+          <option value="Insecticide C">Insecticide C</option>
+          </select>
+          </div>
+          <div class="form-group">
+          <label for="rendement_attendu_valeur">Rendement attendu (valeur) :</label>
+          <input type="number" class="form-control" id="rendement_attendu_valeur" name="rendement_attendu_valeur" required>
+          </div>
+          <div class="form-group">
+          <label for="rendement_attendu_unite">Rendement attendu (unité) :</label>
+          <select class="form-control" id="rendement_attendu_unite" name="rendement_attendu_unite" required>
+          <option value="">Sélectionner une option</option>
+          <option value="quintaux par hectare">quintaux par hectare</option>
+          <option value="tonnes par hectare">tonnes par hectare</option>
+          </select>
+          </div>
+          <div class="form-group">
+          <label for="agriculteur_id">ID de l'agriculteur :</label>
+          <input type="text" class="form-control" id="agriculteur_id" name="agriculteur_id" value="XYZ789" readonly>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="production">Statistiques de production :</label>
+              <div class="form-group">
+                <label for="culture">Culture :</label>
+                <select class="form-control" id="culture" name="culture" required>
+                  <option value="">Sélectionner une culture</option>
+                  <option value="Maïs">Maïs</option>
+                  <option value="Blé">Blé</option>
+                  <option value="Riz">Orge</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="annee">Année :</label>
+                <input type="number" class="form-control" id="annee" name="annee" required>
+              </div>
+              <div class="form-group">
+                <label>Statistiques:</label>
+                <div id="statistiques">
+                  <div class="statistique">
+                    <div class="form-group">
+                      <label for="zone_production">Zone de production :</label>
+                      <select class="form-control" name="zone_production[]" id="zone_production" required multiple>
+                        <option value="Région A">Région A</option>
+                        <option value="Région B">Région B</option>
+                        <option value="Région C">Région C</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="quantite_recoltee">Quantité récoltée :</label>
+                      <input type="number" class="form-control" name="quantite_recoltee[]" id="quantite_recoltee" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="unite_quantite">Unité de quantité :</label>
+                      <select class="form-control" name="unite_quantite[]" id="unite_quantite" required>
+                        <option value="tonnes">Tonnes</option>
+                        <option value="kilogrammes">Kilogrammes</option>
+                        <option value="litres">Litres</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Période de récolte :</label>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="debut">Début :</label>
+                          <input type="date" class="form-control" name="periode_recolte_debut[]" id="debut" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fin">Fin :</label>
+                          <input type="date" class="form-control" name="periode_recolte_fin[]" id="fin" required>
+                        </div>
+                        <button type="submit" class="btn btn-publish btn-block">Publier Agriculteur</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
